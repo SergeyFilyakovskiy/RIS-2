@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://clients.lab.var27/xml"
+           targetNamespace="http://clients.lab.var27/xml"
+           elementFormDefault="qualified">
+
+    <xs:element name="clients" type="tns:ClientsType"/>
+
+    <xs:complexType name="ClientsType">
+        <xs:sequence>
+            <xs:element name="client" type="tns:ClientType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ClientType">
+        <xs:sequence>
+            <xs:element name="surname"        type="tns:NameType"/>
+            <xs:element name="name"           type="tns:NameType"/>
+            <xs:element name="patronymic"     type="tns:NameType"/>
+            <xs:element name="birthDate"      type="xs:date"/>
+            <xs:element name="passportSeries" type="tns:PassportSeriesType"/>
+            <xs:element name="passportNumber" type="tns:PassportNumberType"/>
+            <xs:element name="city"           type="tns:CityNameType"/>
+            <xs:element name="address"        type="tns:AddressType"/>
+            <xs:element name="mobilePhone"    type="tns:MobilePhoneType" minOccurs="0"/>
+            <xs:element name="email"          type="tns:EmailType"       minOccurs="0"/>
+            <xs:element name="position"       type="tns:PositionType"    minOccurs="0"/>
+            <xs:element name="citizenship"    type="tns:CountryNameType"/>
+            <xs:element name="militaryLiable" type="xs:boolean"/>
+        </xs:sequence>
+        <xs:attribute name="id"       type="xs:long"    use="optional"/>
+        <xs:attribute name="employed" type="xs:boolean" use="optional"/>
+    </xs:complexType>
+
+    <xs:simpleType name="NameType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[А-Яа-яЁёA-Za-z][А-Яа-яЁёA-Za-z-]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PassportSeriesType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{2} \d{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PassportNumberType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{6}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MobilePhoneType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="EmailType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CityNameType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CountryNameType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="AddressType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="5"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PositionType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

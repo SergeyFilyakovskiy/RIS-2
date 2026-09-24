@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clients xmlns="http://clients.lab.var27/xml">
+    <client>
+        <surname>Тест</surname><name>Тест</name><patronymic>Тест</patronymic>
+        <birthDate>2000-01-01</birthDate>
+        <passportSeries>AB CD</passportSeries>   <!-- нарушение маски -->
+        <passportNumber>123456</passportNumber>
+        <city>Москва</city>
+        <address>ул. Тестовая, 1</address>
+        <citizenship>Россия</citizenship>
+        <militaryLiable>true</militaryLiable>
+    </client>
+</clients>
