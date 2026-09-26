@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="#{app.title}">Инвентарь</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        table { border-collapse: collapse; margin-top: 1rem; }
+        th, td { border: 1px solid #999; padding: .4rem .8rem; }
+        th { background: #eee; }
+        .counter { font-weight: bold; color: #b00020; }
+        .field-error { color: #b00020; font-size: .85rem; }
+        form.add label { display: inline-block; width: 10rem; }
+        form.add div { margin-bottom: .4rem; }
+    </style>
+</head>
+<body>
+<h1 th:text="#{app.title}">Инвентарь кабинета</h1>
+
+<div>
+    <a th:href="@{/inventory(lang='ru')}" th:text="#{lang.ru}">Русский</a> |
+    <a th:href="@{/inventory(lang='en')}" th:text="#{lang.en}">English</a>
+</div>
+
+<!-- Счётчик «сколько неисправно» в шапке -->
+<p class="counter" th:text="#{app.faulty(${faultyCount})}">Неисправно: 0</p>
+
+<table>
+    <thead>
+    <tr>
+        <th th:text="#{list.col.number}">#</th>
+        <th th:text="#{list.col.name}">Название</th>
+        <th th:text="#{list.col.room}">Кабинет</th>
+        <th th:text="#{list.col.quantity}">Кол-во</th>
+        <th th:text="#{list.col.status}">Статус</th>
+        <th th:text="#{list.col.actions}">Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${#lists.isEmpty(items)}">
+        <td colspan="6" th:text="#{list.empty}">Инвентарь пуст</td>
+    </tr>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.inventoryNumber()}"></td>
+        <td th:text="${item.name()}"></td>
+        <td th:text="${item.room()}"></td>
+        <td th:text="${item.quantity()}"></td>
+        <td th:text="#{'status.' + ${item.status()}}"></td>
+        <td>
+            <form th:action="@{/inventory/{id}/delete(id=${item.id()})}" method="post">
+                <button type="submit" th:text="#{form.delete}">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h2 th:text="#{form.title}">Добавить предмет</h2>
+<form class="add" th:action="@{/inventory}" th:object="${form}" method="post">
+    <div>
+        <label th:text="#{form.number}">Инв. номер</label>
+        <input type="text" th:field="*{inventoryNumber}"/>
+        <span class="field-error" th:if="${#fields.hasErrors('inventoryNumber')}" th:errors="*{inventoryNumber}"></span>
+    </div>
+    <div>
+        <label th:text="#{form.name}">Название</label>
+        <input type="text" th:field="*{name}"/>
+        <span class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    </div>
+    <div>
+        <label th:text="#{form.room}">Кабинет</label>
+        <input type="text" th:field="*{room}"/>
+        <span class="field-error" th:if="${#fields.hasErrors('room')}" th:errors="*{room}"></span>
+    </div>
+    <div>
+        <label th:text="#{form.quantity}">Количество</label>
+        <input type="number" th:field="*{quantity}"/>
+        <span class="field-error" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span>
+    </div>
+    <div>
+        <label th:text="#{form.status}">Статус</label>
+        <select th:field="*{status}">
+            <option th:each="s : ${T(ru.lab.inventory.entity.ItemStatus).values()}"
+                    th:value="${s}" th:text="#{'status.' + ${s}}"></option>
+        </select>
+        <span class="field-error" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></span>
+    </div>
+    <button type="submit" th:text="#{form.submit}">Добавить</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="#{error.title}">Ошибка</title>
+</head>
+<body>
+<h1 th:text="#{error.title}">Ошибка</h1>
+<p th:text="${message}">...</p>
+<a th:href="@{/inventory}" th:text="#{error.back}">Вернуться к списку</a>
+</body>
+</html>
