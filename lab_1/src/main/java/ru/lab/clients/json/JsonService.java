@@ -29,7 +29,8 @@ public class JsonService {
     public JsonService() {
         this.gson = new GsonBuilder()
                 .setPrettyPrinting()
-                .registerTypeAdapter(XMLGregorianCalendar.class, new XmlGregorianCalendarAdapter())
+                // registerTypeHierarchyAdapter ловит и интерфейс, и все реализации (в т.ч. XMLGregorianCalendarImpl)
+                .registerTypeHierarchyAdapter(XMLGregorianCalendar.class, new XmlGregorianCalendarAdapter())
                 .create();
     }
 

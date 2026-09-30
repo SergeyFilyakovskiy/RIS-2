@@ -1,6 +1,6 @@
 package ru.lab.clients.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Objects;
 
 /** Справочник городов (элемент типа "Список" из варианта). */

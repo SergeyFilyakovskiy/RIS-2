@@ -1,7 +1,7 @@
 
 package ru.lab.clients.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Objects;
 
 /** Справочник стран (гражданство — элемент типа "Список"). */

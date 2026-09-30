@@ -17,6 +17,6 @@ public class ClientDao {
     public void remove(Session s, Client c) { s.remove(c); }
 
     public void deleteAll(Session s) {
-        s.createMutationQuery("delete from Client").executeUpdate();
+        s.createQuery("delete from Client").executeUpdate();
     }
 }

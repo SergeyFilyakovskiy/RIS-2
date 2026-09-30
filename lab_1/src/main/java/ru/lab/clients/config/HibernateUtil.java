@@ -10,7 +10,16 @@ public final class HibernateUtil {
 
     public static synchronized SessionFactory getSessionFactory() {
         if (factory == null) {
-            factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+            String configFile;
+            
+            // Проверяем, есть ли тестовый конфиг в classpath
+            if (HibernateUtil.class.getResource("/hibernate-test.cfg.xml") != null) {
+                configFile = "hibernate-test.cfg.xml";
+            } else {
+                configFile = "hibernate.cfg.xml";
+            }
+            
+            factory = new Configuration().configure(configFile).buildSessionFactory();
         }
         return factory;
     }

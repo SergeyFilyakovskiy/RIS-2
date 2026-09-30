@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <clients xmlns="http://clients.lab.var27/xml">
-    <client  employed="true">
+    <client employed="true">
         <surname>Иванов</surname>
         <name>Иван</name>
         <patronymic>Иванович</patronymic>
@@ -11,12 +11,11 @@
         <address>ул. Ленина, д. 10, кв. 25</address>
         <mobilePhone>+7 (495) 123-45-67</mobilePhone>
         <email>ivanov@example.com</email>
-        <employed>true</employed>
         <position>Инженер</position>
         <citizenship>Россия</citizenship>
         <militaryLiable>true</militaryLiable>
     </client>
-    <client  employed="false">
+    <client employed="false">
         <surname>Петрова</surname>
         <name>Мария</name>
         <patronymic>Сергеевна</patronymic>
@@ -27,11 +26,10 @@
         <address>Невский проспект, д. 100, кв. 5</address>
         <mobilePhone>+7 (812) 234-56-78</mobilePhone>
         <email>petrova@mail.ru</email>
-        <employed>false</employed>
         <citizenship>Россия</citizenship>
         <militaryLiable>false</militaryLiable>
     </client>
-    <client  employed="true">
+    <client employed="true">
         <surname>Сидоров</surname>
         <name>Пётр</name>
         <patronymic>Арсеньевич</patronymic>
@@ -40,7 +38,6 @@
         <passportNumber>999888</passportNumber>
         <city>Казань</city>
         <address>ул. Пушкина, д. 5</address>
-        <employed>true</employed>
         <position>Директор</position>
         <citizenship>Казахстан</citizenship>
         <militaryLiable>true</militaryLiable>
